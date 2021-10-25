@@ -30,6 +30,39 @@ function loadFileInto(fromFile, whereTo) {
 
 }
 
+
+
+//New recipe Object 
+
+function Recipe(recipeName, contributorName, imageURL, ingredientsFilename, equipmentFilename, directionsFilename) {
+
+  this.recipe= recipeName;
+  this.contributor= contributorName;
+  this.image= imageURL;
+  this.ingredients= ingredientsFilename;
+  this.equipment= equipmentFilename
+  this.directions= directionsFilename;
+  
+  
+  this.displayRecipe = function(){
+    
+    document.querySelector("#titleBanner h1").innerHTML = this.recipe
+    document.querySelector("#contributor").innerHTML = this.contributor
+    
+loadFileInto(this.ingredients, "#ingredients ul")
+loadFileInto(this.equipment, "#equipment ul")
+loadFileInto(this.directions, "#directions ul")
+  }
+}
+
+FrenchCrepes = new Recipe("French Crepes", "Rachel","https://media.istockphoto.com/photos/arc-de-triomphe-paris-picture-id135034702?b=1&k=20&m=135034702&s=170667a&w=0&h=Y6w6ohcqRzhNQBFyQPCPAUyzzvVbcSLl9Esa2AwUX4o=", "ingredients.html", "equipment.html", "directions.html" )
+
+SpamMusubi = new Recipe("Spam Musubi", "Paige","ingredientsA.html", "equipmentA.html", "directionsA.html");
+AnotherRecipe = new Recipe();
+
+ChocolateChipCookies = new Recipe("Chocolate Chip Cookies", "Fallyn", "ingredientsB.html", "equipmentB.html", "directionsB.html");
+AnotherRecipe = new Recipe();
+
 window.onload = function() {
   
   window.onload=function(){
@@ -61,10 +94,22 @@ window.onload = function() {
   
   document.querySelector("#footer").innerHTML += "<p>Serving Size 4 </p>";
 
-loadFileInto("ingredients.html", "#ingredients ul")
-loadFileInto("equipment.html", "#equipment ul")
-loadFileInto("directions.html", "#directions ul")
 
+  document.querySelector("#r1").onclick = function() {
+    
+    FrenchCrepes.displayRecipe();
+  }
+  
+   document.querySelector("#r2").onclick = function() {
+    SpamMusubi.displayRecipe();
+  }
+
+   document.querySelector("#r3").onclick = function() {
+    ChocolateChipCookies.displayRecipe();
+  }
+  
+  
+  
 } // end of window.onload
  
 // document.getElementById("serving size").innerHTML = "Serving Size Approx 12" ;
