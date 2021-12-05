@@ -15,6 +15,7 @@ function loadFileInto(fromFile, whereTo) {
 
 		if ((this.readyState == 4) && (this.status == 200)) { // if .readyState is 4, the process is done; and if .status is 200, there were no HTTP errors
 
+      console.log("From: " + fromFile + " -- WhereTo: " + whereTo + " -- Ajax Response: " + this.responseText);
 			document.querySelector(whereTo).innerHTML = this.responseText; // insert received output directly into the chosen DOM object
 
 		} else if ((this.readyState == 4) && (this.status != 200)) { // if .readyState is 4, the process is done; and if .status is NOT 200, output the error into the console
@@ -32,6 +33,11 @@ function loadFileInto(fromFile, whereTo) {
 
 
 
+
+
+
+
+
 //New recipe Object 
 
 function Recipe(recipeName, contributorName, imageURL, ingredientsFilename, equipmentFilename, directionsFilename) {
@@ -40,36 +46,43 @@ function Recipe(recipeName, contributorName, imageURL, ingredientsFilename, equi
   this.contributor= contributorName;
   this.image= imageURL;
   this.ingredients= ingredientsFilename;
-  this.equipment= equipmentFilename
+  this.equipment= equipmentFilename;
   this.directions= directionsFilename;
   
   
   this.displayRecipe = function(){
     
-    document.querySelector("#titleBanner h1").innerHTML = this.recipe
-    document.querySelector("#contributor").innerHTML = this.contributor
+    document.querySelector("#crepeHeader h1").innerHTML = this.recipe;
+    document.querySelector("#contributor").innerHTML = this.contributor;
     
-loadFileInto(this.ingredients, "#ingredients ul")
-loadFileInto(this.equipment, "#equipment ul")
-loadFileInto(this.directions, "#directions ul")
+    loadFileInto(this.ingredients, "#ingredients ul");
+    loadFileInto(this.equipment, "#equipment ul");
+    loadFileInto(this.directions, "#directions ul");
   }
 }
 
 FrenchCrepes = new Recipe("French Crepes", "Rachel","https://media.istockphoto.com/photos/arc-de-triomphe-paris-picture-id135034702?b=1&k=20&m=135034702&s=170667a&w=0&h=Y6w6ohcqRzhNQBFyQPCPAUyzzvVbcSLl9Esa2AwUX4o=", "ingredients.html", "equipment.html", "directions.html" )
 
-SpamMusubi = new Recipe("Spam Musubi", "Paige","ingredientsA.html", "equipmentA.html", "directionsA.html");
+SpamMusubi = new Recipe("Spam Musubi", "Paige","https://media.istockphoto.com/photos/arc-de-triomphe-paris-picture-id135034702?b=1&k=20&m=135034702&s=170667a&w=0&h=Y6w6ohcqRzhNQBFyQPCPAUyzzvVbcSLl9Esa2AwUX4o=", "IngredientsA.html", "equipmentA.html", "DirectionsA.html");
 AnotherRecipe = new Recipe();
 
-ChocolateChipCookies = new Recipe("Chocolate Chip Cookies", "Fallyn", "ingredientsB.html", "equipmentB.html", "directionsB.html");
+ChocolateChipCookies = new Recipe("Chocolate Chip Cookies", "Fallyn","https://media.istockphoto.com/photos/arc-de-triomphe-paris-picture-id135034702?b=1&k=20&m=135034702&s=170667a&w=0&h=Y6w6ohcqRzhNQBFyQPCPAUyzzvVbcSLl9Esa2AwUX4o=", "ingredientsB.html", "equipmentB.html", "DirectionsB.html");
 AnotherRecipe = new Recipe();
+
+
+
+
+
+
+
+
 
 window.onload = function() {
   
-  window.onload=function(){
   // $('H1').css({'text-color': 'red'}); 
   
-  document.querySelector("#CrepeHeader").style.color = "red";
-}
+  document.querySelector("#crepeHeader").style.color = "red";
+
 
   
   document.querySelector("#crepeHeader").classList.add ("tp6");
@@ -101,11 +114,13 @@ window.onload = function() {
   }
   
    document.querySelector("#r2").onclick = function() {
-    SpamMusubi.displayRecipe();
+  
+     SpamMusubi.displayRecipe();
   }
 
    document.querySelector("#r3").onclick = function() {
-    ChocolateChipCookies.displayRecipe();
+   
+     ChocolateChipCookies.displayRecipe();
   }
   
   
